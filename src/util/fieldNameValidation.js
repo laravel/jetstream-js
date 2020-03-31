@@ -1,5 +1,7 @@
 export const reservedFieldNames = [
     '__options',
+    '__inertia',
+    '__page',
     '__validateRequestType',
     'data',
     'delete',

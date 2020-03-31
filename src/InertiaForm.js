@@ -1,11 +1,10 @@
-import { Inertia } from '@inertiajs/inertia'
 import { guardAgainstReservedFieldName, isArray, isFile, merge, objectToFormData } from './util';
 
 class InertiaForm {
     constructor(data = {}, options = {}) {
         this.processing = false;
         this.successful = false;
-        this.recentlySaved = false;
+        this.recentlySuccessful = false;
 
         this.withData(data)
             .withOptions(options)
@@ -54,6 +53,18 @@ class InertiaForm {
         return this;
     }
 
+    withInertia(inertia) {
+        this.__inertia = inertia;
+
+        return this;
+    }
+
+    withPage(page) {
+        this.__page = page;
+
+        return this;
+    }
+
     data() {
         const data = {};
 
@@ -96,20 +107,16 @@ class InertiaForm {
         this.processing = true;
         this.successful = false;
 
-        return new Promise((resolve, reject) => {
-            Inertia[requestType](url, options)
-                .then(response => {
-                    this.processing = false;
+        return this.__inertia[requestType](url, this.hasFiles() ? objectToFormData(this.data()) : this.data(), options)
+            .then(() => {
+                this.processing = false;
 
-                    if (! this.hasErrors()) {
-                        this.onSuccess();
-                    } else {
-                        this.onFail();
-                    }
-
-                    resolve(response);
-                })
-        });
+                if (! this.hasAnyErrors()) {
+                    this.onSuccess();
+                } else {
+                    this.onFail();
+                }
+            })
     }
 
     hasFiles() {
@@ -161,11 +168,12 @@ class InertiaForm {
 
     onFail() {
         this.successful = false;
+        this.recentlySuccessful = false;
     }
 
     hasAnyErrors() {
-        return Inertia.page.errorBags[this.__options.bag] &&
-               Object.keys(Inertia.page.errorBags[this.__options.bag]).length > 0;
+        return this.inertiaPage().errorBags[this.__options.bag] &&
+               Object.keys(this.inertiaPage().errorBags[this.__options.bag]).length > 0;
     }
 
     hasErrors(field) {
@@ -173,17 +181,23 @@ class InertiaForm {
     }
 
     errorFor(field) {
-        if (! this.hasErrors() ||
-            ! Inertia.page.errorBags[this.__options.bag][field] ||
-            Inertia.page.errorBags[this.__options.bag][field].length == 0) {
+        if (! this.hasAnyErrors() ||
+            ! this.inertiaPage().errorBags[this.__options.bag][field] ||
+            this.inertiaPage().errorBags[this.__options.bag][field].length == 0) {
             return;
         }
 
-        return Inertia.page.errorBags[this.__options.bag][field][0];
+        return this.inertiaPage().errorBags[this.__options.bag][field][0];
     }
 
     errorsFor(field) {
-        return this.errors.get(field);
+        return this.errorsFor(field)
+                    ? this.inertiaPage().errorBags[this.__options.bag][field]
+                    : [];
+    }
+
+    inertiaPage() {
+        return this.__page()
     }
 
     __validateRequestType(requestType) {
@@ -198,4 +212,14 @@ class InertiaForm {
     }
 }
 
-export default InertiaForm;
+export default {
+    install(Vue) {
+        Vue.prototype.$inertia.form = (data, options) => {
+            return InertiaForm.create()
+                        .withData(data)
+                        .withOptions(options)
+                        .withInertia(Vue.prototype.$inertia)
+                        .withPage(() => Vue.prototype.$page)
+        }
+    }
+};

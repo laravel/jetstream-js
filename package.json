@@ -33,6 +33,7 @@
         "babel-preset-es2015": "^6.9.0"
     },
     "dependencies": {
+        "@inertiajs/inertia": "^0.1.7",
         "prettier": "^1.10.2"
     }
 }
