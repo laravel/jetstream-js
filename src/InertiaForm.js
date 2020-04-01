@@ -111,7 +111,7 @@ class InertiaForm {
             .then(() => {
                 this.processing = false;
 
-                if (! this.hasAnyErrors()) {
+                if (! this.hasErrors()) {
                     this.onSuccess();
                 } else {
                     this.onFail();
@@ -171,17 +171,13 @@ class InertiaForm {
         this.recentlySuccessful = false;
     }
 
-    hasAnyErrors() {
+    hasErrors() {
         return this.inertiaPage().errorBags[this.__options.bag] &&
                Object.keys(this.inertiaPage().errorBags[this.__options.bag]).length > 0;
     }
 
-    hasErrors(field) {
-        return Boolean(this.errorFor(field));
-    }
-
-    errorFor(field) {
-        if (! this.hasAnyErrors() ||
+    error(field) {
+        if (! this.hasErrors() ||
             ! this.inertiaPage().errorBags[this.__options.bag][field] ||
             this.inertiaPage().errorBags[this.__options.bag][field].length == 0) {
             return;
@@ -190,8 +186,8 @@ class InertiaForm {
         return this.inertiaPage().errorBags[this.__options.bag][field][0];
     }
 
-    errorsFor(field) {
-        return this.errorsFor(field)
+    errors(field) {
+        return this.error(field)
                     ? this.inertiaPage().errorBags[this.__options.bag][field]
                     : [];
     }
