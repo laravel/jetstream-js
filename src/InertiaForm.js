@@ -107,16 +107,23 @@ class InertiaForm {
         this.processing = true;
         this.successful = false;
 
-        return this.__inertia[requestType](url, this.hasFiles() ? objectToFormData(this.data()) : this.data(), options)
-            .then(() => {
-                this.processing = false;
+        const then = () => {
+            this.processing = false;
 
-                if (! this.hasErrors()) {
-                    this.onSuccess();
-                } else {
-                    this.onFail();
-                }
-            })
+            if (! this.hasErrors()) {
+                this.onSuccess();
+            } else {
+                this.onFail();
+            }
+        }
+
+        if (requestType === 'delete') {
+            return this.__inertia[requestType](url, options)
+                .then(then)
+        }
+
+        return this.__inertia[requestType](url, this.hasFiles() ? objectToFormData(this.data()) : this.data(), options)
+            .then(then)
     }
 
     hasFiles() {
