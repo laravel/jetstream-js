@@ -1,6 +1,6 @@
 {
     "name": "laravel-jetstream",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "description": "",
     "main": "dist/index.js",
     "jsnext:main": "src/index.js",
