@@ -217,7 +217,7 @@ class InertiaForm {
 
 export default {
     install(Vue) {
-        Vue.prototype.$inertia.form = (data, options) => {
+        Vue.prototype.$inertia.form = (data = {}, options = {}) => {
             return InertiaForm.create()
                         .withData(data)
                         .withOptions(options)
