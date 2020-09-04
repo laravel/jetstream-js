@@ -197,8 +197,10 @@ class InertiaForm {
 
     errors(field = null) {
         if (field === null) {
-            return Object.values(this.inertiaPage().errorBags[this.__options.bag])
-                        .reduce((a, b) => a.concat(b), []);
+            return this.hasErrors()
+                        ? Object.values(this.inertiaPage().errorBags[this.__options.bag])
+                                .reduce((a, b) => a.concat(b), [])
+                        : [];
         }
 
         return this.error(field)
