@@ -66,7 +66,9 @@ class InertiaForm {
     }
 
     data() {
-        const data = {};
+        const data = {
+            '_error_bag': this.__options.bag
+        };
 
         for (const property in this.initial) {
             data[property] = this[property];
