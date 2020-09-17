@@ -1,9 +1,22 @@
 <p align="center"><img src="https://laravel.com/assets/img/components/logo-jetstream.svg"></p>
 
-<a name="introduction"></a>
+<p align="center">
+<a href="https://www.npmjs.com/package/laravel-jetstream"><img src="https://img.shields.io/npm/dt/laravel-jetstream" alt="Total Downloads"></a>
+<a href="https://www.npmjs.com/package/laravel-jetstream"><img src="https://img.shields.io/npm/v/laravel-jetstream" alt="Latest Stable Version"></a>
+<a href="https://www.npmjs.com/package/laravel-jetstream"><img src="https://img.shields.io/npm/l/laravel-jetstream" alt="License"></a>
+</p>
+
 ## Introduction
 
-The Laravel Jetstream JavaScript library provides convenient form / validation helpers for the Jetstream Inertia stack. For more information on utilizing these features, please consult the official [Jetstream documentation](https://github.com/laravel/jetstream).
+The Laravel Jetstream JavaScript library provides convenient form / validation helpers for the Jetstream Inertia stack.
+
+## Official Documentation
+
+Documentation for Jetstream JavaScript can be found on the [Jetstream website](https://jetstream.laravel.com).
+
+## Contributing
+
+Thank you for considering contributing to Jetstream! You can read the contribution guide [here](.github/CONTRIBUTING.md).
 
 ## Code of Conduct
 
@@ -11,7 +24,7 @@ In order to ensure that the Laravel community is welcoming to all, please review
 
 ## Security Vulnerabilities
 
-Please review [our security policy](https://github.com/laravel/jetstream/security/policy) on how to report security vulnerabilities.
+Please review [our security policy](https://github.com/laravel/jetstream-js/security/policy) on how to report security vulnerabilities.
 
 ## License
 
