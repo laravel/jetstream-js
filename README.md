@@ -8,7 +8,15 @@
 
 ## Introduction
 
-The Laravel Jetstream JavaScript library provides convenient form / validation helpers for the Jetstream Inertia stack. For more information on utilizing these features, please consult the official [Jetstream documentation](https://jetstream.laravel.com).
+The Laravel Jetstream JavaScript library provides convenient form / validation helpers for the Jetstream Inertia stack.
+
+## Official Documentation
+
+Documentation for Jetstream JavaScript can be found on the [Jetstream website](https://jetstream.laravel.com).
+
+## Contributing
+
+Thank you for considering contributing to Jetstream! You can read the contribution guide [here](.github/CONTRIBUTING.md).
 
 ## Code of Conduct
 
