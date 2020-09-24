@@ -1,13 +1,33 @@
-import { guardAgainstReservedFieldName, isArray, isFile, merge, objectToFormData } from './util';
+import {
+    guardAgainstReservedFieldName,
+    isArray,
+    isFile,
+    merge,
+    objectToFormData,
+    reservedFieldNames
+} from './util';
 
 class InertiaForm {
     constructor(data = {}, options = {}) {
         this.processing = false;
         this.successful = false;
         this.recentlySuccessful = false;
+        this.isDirty = false;
 
         this.withData(data)
             .withOptions(options)
+
+        return new Proxy(this, {
+            set(obj, prop, value) {
+                obj[prop] = value;
+
+                if ((reservedFieldNames.indexOf(prop) === -1) && value !== obj.initial[prop]) {
+                    obj.isDirty = true;
+                }
+
+                return true;
+            }
+        })
     }
 
     static create(data = {}) {
@@ -32,6 +52,8 @@ class InertiaForm {
 
             this[field] = data[field];
         }
+
+        this.isDirty = false;
 
         return this;
     }
@@ -79,6 +101,8 @@ class InertiaForm {
 
     reset() {
         merge(this, this.initial);
+
+        this.isDirty = false;
     }
 
     setInitialValues(values) {

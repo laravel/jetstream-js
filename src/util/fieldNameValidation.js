@@ -9,6 +9,7 @@ export const reservedFieldNames = [
     'errorsFor',
     'hasErrors',
     'initial',
+    'isDirty',
     'onFail',
     'onSuccess',
     'patch',
