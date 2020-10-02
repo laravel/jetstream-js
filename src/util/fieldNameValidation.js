@@ -15,6 +15,7 @@ export const reservedFieldNames = [
     'post',
     'processing',
     'put',
+    'recentlySuccessful',
     'reset',
     'submit',
     'successful',
