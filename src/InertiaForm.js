@@ -62,6 +62,7 @@ class InertiaForm {
         this.__options = {
             bag: 'default',
             resetOnSuccess: true,
+            setInitialOnSuccess: false,
         };
 
         if (options.hasOwnProperty('bag')) {
@@ -70,6 +71,10 @@ class InertiaForm {
 
         if (options.hasOwnProperty('resetOnSuccess')) {
             this.__options.resetOnSuccess = options.resetOnSuccess;
+        }
+
+        if (options.hasOwnProperty('setInitialOnSuccess')) {
+            this.__options.setInitialOnSuccess = options.setInitialOnSuccess;
         }
 
         return this;
@@ -196,6 +201,10 @@ class InertiaForm {
 
         if (this.__options.resetOnSuccess) {
             this.reset();
+        } else if (this.__options.setInitialOnSuccess) {
+            const { _error_bag, ...data } = this.data();
+            this.setInitialValues(data);
+            this.isDirty = false;
         }
     }
 
