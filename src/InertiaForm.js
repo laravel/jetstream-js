@@ -258,13 +258,24 @@ class InertiaForm {
 }
 
 export default {
-    install(Vue) {
-        Vue.prototype.$inertia.form = (data = {}, options = {}) => {
-            return InertiaForm.create()
+    install(app) {
+        if (app.version.split('.')[0] == 3) {
+            Object.defineProperty(app.config.globalProperties.$inertia, 'form', {
+                value: (data = {}, options = {}) =>
+                    InertiaForm.create()
                         .withData(data)
                         .withOptions(options)
-                        .withInertia(Vue.prototype.$inertia)
-                        .withPage(() => Vue.prototype.$page)
+                        .withInertia(app.config.globalProperties.$inertia)
+                        .withPage(() => app.config.globalProperties.$page),
+            });
+        } else {
+            app.prototype.$inertia.form = (data = {}, options = {}) => {
+                return InertiaForm.create()
+                    .withData(data)
+                    .withOptions(options)
+                    .withInertia(app.prototype.$inertia)
+                    .withPage(() => app.prototype.$page);
+            };
         }
-    }
+    },
 };
