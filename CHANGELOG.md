@@ -1,6 +1,12 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/jetstream-js/compare/v0.1.2...master)
+## [Unreleased](https://github.com/laravel/jetstream-js/compare/v0.2.0...master)
+
+
+## [v0.2.0 (2020-10-05)](https://github.com/laravel/jetstream-js/compare/v0.1.2...v0.2.0)
+
+### Added
+- Add isDirty property ([#4](https://github.com/laravel/jetstream-js/pull/4))
 
 
 ## [v0.1.2 (2020-09-04)](https://github.com/laravel/jetstream-js/compare/v0.1.1...v0.1.2)
