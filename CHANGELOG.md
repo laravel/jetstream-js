@@ -1,6 +1,12 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/jetstream-js/compare/v0.2.0...master)
+## [Unreleased](https://github.com/laravel/jetstream-js/compare/v0.2.1...master)
+
+
+## [v0.2.1 (2020-10-07)](https://github.com/laravel/jetstream-js/compare/v0.2.0...v0.2.1)
+
+### Added
+- Vue 3 Support ([#6](https://github.com/laravel/jetstream-js/pull/6))
 
 
 ## [v0.2.0 (2020-10-05)](https://github.com/laravel/jetstream-js/compare/v0.1.2...v0.2.0)
