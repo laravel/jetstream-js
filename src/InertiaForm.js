@@ -138,7 +138,7 @@ class InertiaForm {
         this.processing = true;
         this.successful = false;
 
-        const then = () => {
+        const onSuccess = page => {
             this.processing = false;
 
             if (! this.hasErrors()) {
@@ -146,15 +146,17 @@ class InertiaForm {
             } else {
                 this.onFail();
             }
+
+            if (options.onSuccess) {
+                options.onSuccess(page)
+            }
         }
 
         if (requestType === 'delete') {
-            return this.__inertia[requestType](url, options)
-                .then(then)
+            return this.__inertia[requestType](url, { ... options, onSuccess })
         }
 
-        return this.__inertia[requestType](url, this.hasFiles() ? objectToFormData(this.data()) : this.data(), options)
-            .then(then)
+        return this.__inertia[requestType](url, this.hasFiles() ? objectToFormData(this.data()) : this.data(), { ... options, onSuccess })
     }
 
     hasFiles() {
@@ -266,7 +268,7 @@ export default {
                         .withData(data)
                         .withOptions(options)
                         .withInertia(app.config.globalProperties.$inertia)
-                        .withPage(() => app.config.globalProperties.$page),
+                        .withPage(() => app.config.globalProperties.$page.hasOwnProperty('props') ? app.config.globalProperties.$page.props : app.config.globalProperties.$page),
             });
         } else {
             app.prototype.$inertia.form = (data = {}, options = {}) => {
@@ -274,7 +276,7 @@ export default {
                     .withData(data)
                     .withOptions(options)
                     .withInertia(app.prototype.$inertia)
-                    .withPage(() => app.prototype.$page);
+                    .withPage(() => app.prototype.$page.hasOwnProperty('props') ? app.prototype.$page.props : app.prototype.$page);
             };
         }
     },
