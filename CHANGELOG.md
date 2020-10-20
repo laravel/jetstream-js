@@ -1,6 +1,12 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/jetstream-js/compare/v0.2.1...master)
+## [Unreleased](https://github.com/laravel/jetstream-js/compare/v1.0.0...master)
+
+
+## [v1.0.0 (2020-10-14)](https://github.com/laravel/jetstream-js/compare/v0.2.1...v1.0.0)
+
+### Changed
+- Update InertiaForm to handle latest version inertia 0.4 and inertia-vue 0.3 ([#8](https://github.com/laravel/jetstream-js/pull/8))
 
 
 ## [v0.2.1 (2020-10-07)](https://github.com/laravel/jetstream-js/compare/v0.2.0...v0.2.1)
