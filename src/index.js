@@ -1,1 +1,1 @@
-export { default as InertiaForm } from './InertiaForm';
+export { default as InertiaForm, useForm } from './InertiaForm';
