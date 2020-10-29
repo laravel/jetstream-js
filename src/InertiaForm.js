@@ -1,3 +1,5 @@
+import { Inertia } from '@inertiajs/inertia'
+import { shallowReactive } from 'vue'
 import {
     guardAgainstReservedFieldName,
     isArray,
@@ -257,6 +259,20 @@ class InertiaForm {
             );
         }
     }
+}
+
+export function useForm(data, options) {
+    const adapter = require('@inertiajs/inertia-vue3')
+
+    if (! adapter || ! shallowReactive) throw Error('The useForm hook may only be used with Vue 3 and @inertiajs/inertia-vue3.')
+
+    return shallowReactive(
+        InertiaForm.create()
+            .withData(data)
+            .withOptions(options)
+            .withInertia(Inertia)
+            .withPage(() => adapter.usePage().props.value)
+    )
 }
 
 export default {
