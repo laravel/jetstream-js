@@ -1,6 +1,18 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/jetstream-js/compare/v1.0.0...master)
+## [Unreleased](https://github.com/laravel/jetstream-js/compare/v1.1.1...master)
+
+
+## [v1.1.1 (2020-10-29)](https://github.com/laravel/jetstream-js/compare/v1.1.0...v1.1.1)
+
+### Fixed
+- Allow easier useForm import ([#13](https://github.com/laravel/jetstream-js/pull/13))
+
+
+## [v1.1.0 (2020-10-29)](https://github.com/laravel/jetstream-js/compare/v1.0.0...v1.1.0)
+
+### Added
+- Add a hook for creating a new form ([#12](https://github.com/laravel/jetstream-js/pull/12))
 
 
 ## [v1.0.0 (2020-10-14)](https://github.com/laravel/jetstream-js/compare/v0.2.1...v1.0.0)
