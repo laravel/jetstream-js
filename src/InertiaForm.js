@@ -222,14 +222,16 @@ class InertiaForm {
                Object.keys(this.inertiaPage().errorBags[this.__options.bag]).length > 0;
     }
 
-    error(field) {
-        if (! this.hasErrors() ||
-            ! this.inertiaPage().errorBags[this.__options.bag][field] ||
-            this.inertiaPage().errorBags[this.__options.bag][field].length == 0) {
-            return;
-        }
+    hasError(field) {
+        return this.hasErrors() &&
+               this.inertiaPage().errorBags[this.__options.bag][field] &&
+               this.inertiaPage().errorBags[this.__options.bag][field].length > 0;
+    }
 
-        return this.inertiaPage().errorBags[this.__options.bag][field][0];
+    error(field) {
+        if (this.hasError(field)) {
+            return this.inertiaPage().errorBags[this.__options.bag][field][0];
+        }
     }
 
     errors(field = null) {
@@ -240,7 +242,7 @@ class InertiaForm {
                         : [];
         }
 
-        return this.error(field)
+        return this.hasError(field)
                     ? this.inertiaPage().errorBags[this.__options.bag][field]
                     : [];
     }
