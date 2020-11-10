@@ -1,6 +1,12 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/jetstream-js/compare/v1.1.1...master)
+## [Unreleased](https://github.com/laravel/jetstream-js/compare/v1.2.0...master)
+
+
+## [v1.2.0 (2020-11-10)](https://github.com/laravel/jetstream-js/compare/v1.1.1...v1.2.0)
+
+### Added
+- Add method to check error for specific field ([#14](https://github.com/laravel/jetstream-js/pull/14))
 
 
 ## [v1.1.1 (2020-10-29)](https://github.com/laravel/jetstream-js/compare/v1.1.0...v1.1.1)
