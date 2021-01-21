@@ -8,6 +8,8 @@
 
 ## Introduction
 
+> As of the Jetstream 2.0 release, this library is no longer necessary as all of its features have been incorporated into Inertia itself. Therefore, we will not be accepting any more pull requests to this library.
+
 The Laravel Jetstream JavaScript library provides convenient form / validation helpers for the Jetstream Inertia stack.
 
 ## Official Documentation
